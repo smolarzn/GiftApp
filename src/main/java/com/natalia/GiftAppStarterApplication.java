@@ -1,4 +1,4 @@
-package com.natalia.domain;
+package com.natalia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
