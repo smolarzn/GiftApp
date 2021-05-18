@@ -2,17 +2,15 @@ package com.natalia.domain;
 
 import com.natalia.domain.validator.Password;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserEntity extends AbstractEntity {
 
     @Column(unique = true)
     @Size(min = 1, max = 30)
@@ -23,10 +21,6 @@ public class UserEntity {
 
     @Email(regexp = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.([a-zA-Z]{2,}){1}")
     private String email;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getUserName() {
         return userName;
