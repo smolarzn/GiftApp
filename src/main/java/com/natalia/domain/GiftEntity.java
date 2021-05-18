@@ -1,20 +1,17 @@
 package com.natalia.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gift")
 public class GiftEntity extends AbstractEntity {
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "from_who_id", referencedColumnName = "id")
     private UserEntity fromWho;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "to_who_id", referencedColumnName = "id")
     private UserEntity toWho;
 
     @ManyToOne

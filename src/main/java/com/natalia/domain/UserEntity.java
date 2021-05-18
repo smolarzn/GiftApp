@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class UserEntity extends AbstractEntity {
 
     @Column(unique = true)

@@ -23,7 +23,7 @@ public class HappeningEntity extends AbstractEntity {
     @JoinTable(
             name = "happening_to_participant",
             joinColumns = @JoinColumn(name = "happening_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            inverseJoinColumns = @JoinColumn(name = "participant_id")
     )
     private List<UserEntity> participants;
 
