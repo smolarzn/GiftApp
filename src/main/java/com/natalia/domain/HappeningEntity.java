@@ -13,10 +13,11 @@ public class HappeningEntity extends AbstractEntity {
     @NotNull
     private String topic;
 
-    @Size(min = 5, max = 50)
+    @Size(max = 50)
     private String description;
 
     @NotNull
+    @Column(name = "happening_day")
     private LocalDate time;
 
     @ManyToMany
