@@ -7,15 +7,16 @@ import java.util.regex.Pattern;
 
 public class PasswordValidator implements ConstraintValidator<Password, String> {
 
-    private final Pattern atLeastSixSigns = Pattern.compile("\\S{6,}");
-    private final Pattern atLeastOneBigLetter = Pattern.compile("[A-Z]+");
-    private final Pattern atLeastOneSignNotLetter = Pattern.compile("\\W+");
+    /**
+     * Pattern used to validate password strength.
+     * Determines at least one uppercase letter, one lowercase letter
+     * and one non-word character.
+     */
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*\\W)(?=.*[A-Z])(?=.*[a-z]).{6,}$");
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        Matcher atLeastSixSignsMatcher = atLeastSixSigns.matcher(value);
-        Matcher atLeastOneBigLetterMatcher = atLeastOneBigLetter.matcher(value);
-        Matcher atLeastOneSignNotLetterMatcher = atLeastOneSignNotLetter.matcher(value);
-        return atLeastOneSignNotLetterMatcher.matches() && atLeastOneBigLetterMatcher.matches() && atLeastSixSignsMatcher.matches();
+        Matcher matcher = PASSWORD_PATTERN.matcher(value);
+        return matcher.matches();
     }
 }
