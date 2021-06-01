@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-//@Transactional
+@Transactional
 public class UserServiceImplementationTest {
 
     @Autowired
@@ -96,6 +96,39 @@ public class UserServiceImplementationTest {
         UserTo updatedUser = userService.update(userToUpdate);
         //then
         assertNull(updatedUser);
+    }
+
+    @Test
+    public void shouldDeleteUser() {
+        //given
+        Long id = 1L;
+        UserTo user = userService.findById(id);
+        //when
+        userService.delete(id);
+        //then
+        assertNotNull(user);
+        assertNull(userService.findById(id));
+    }
+
+    @Test
+    public void shouldFindById() {
+        //given
+        Long id = 1L;
+        //when
+        UserTo byId = userService.findById(id);
+        //then
+        assertNotNull(byId);
+        assertEquals(id, byId.getId());
+    }
+
+    @Test
+    public void shouldNotFindByIdWhenNoUserWithId() {
+        //given
+        Long id = 100L;
+        //when
+        UserTo byId = userService.findById(id);
+        //then
+        assertNull(byId);
     }
 
 

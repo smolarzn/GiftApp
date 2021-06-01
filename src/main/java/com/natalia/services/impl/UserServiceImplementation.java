@@ -57,4 +57,22 @@ public class UserServiceImplementation implements UserService {
         UserEntity updated = userRepository.save(userEntityToUpdate);
         return UserMapper.map2To(updated);
     }
+
+    @Override
+    public void delete(Long id) {
+        Optional<UserEntity> byId = userRepository.findById(id);
+        if (byId.isEmpty()) {
+            return;
+        }
+        userRepository.delete(byId.get());
+    }
+
+    @Override
+    public UserTo findById(Long id) {
+        Optional<UserEntity> byId = userRepository.findById(id);
+        if (byId.isEmpty()) {
+            return null;
+        }
+        return UserMapper.map2To(byId.get());
+    }
 }

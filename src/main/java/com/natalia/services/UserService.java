@@ -8,5 +8,9 @@ public interface UserService {
 
     UserTo findByUserName(String name);
 
+    UserTo findById(Long id);
+
     UserTo update(UserTo user);
+
+    void delete(Long id);
 }
