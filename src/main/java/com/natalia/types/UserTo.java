@@ -1,10 +1,18 @@
 package com.natalia.types;
 
+import com.natalia.domain.validator.Password;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class UserTo {
 
     private Long id;
+    @NotEmpty
     private String name;
+    @Password
     private String password;
+    @Email(regexp = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.([a-zA-Z]{2,}){1}")
     private String email;
 
     public Long getId() {
