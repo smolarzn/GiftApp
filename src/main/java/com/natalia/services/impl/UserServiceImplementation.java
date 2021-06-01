@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImplementation implements UserService {
 
@@ -31,5 +33,28 @@ public class UserServiceImplementation implements UserService {
         logger.info("{},{},{}", userEntity.getEmail(), userEntity.getPassword(), userEntity.getId());
         UserEntity saved = userRepository.save(userEntity);
         return UserMapper.map2To(saved);
+    }
+
+    @Override
+    public UserTo findByUserName(String name) {
+        UserEntity userByName = userRepository.findUserByUserName(name);
+        if (userByName == null) {
+            return null;
+        }
+        return UserMapper.map2To(userByName);
+    }
+
+    @Override
+    public UserTo update(UserTo user) {
+        Long userId = user.getId();
+        Optional<UserEntity> byId = userRepository.findById(userId);
+        if (byId.isEmpty()) {
+            return null;
+        }
+        UserEntity userEntity = byId.get();
+        UserEntity userEntityToUpdate = UserMapper.map2Entity(user, userEntity);
+        userEntityToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+        UserEntity updated = userRepository.save(userEntityToUpdate);
+        return UserMapper.map2To(updated);
     }
 }
