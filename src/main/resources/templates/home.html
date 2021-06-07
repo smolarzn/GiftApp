@@ -2,14 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home Page</title>
 </head>
 <body>
+<div><h4 th:text="#{text.welcome}"></h4></div>
 
-<a th:href="@{/register}"><span th:text="#{link.register}"></span></a>
-<a th:href="@{/login}"><span th:text="#{link.login}"></span></a>
-<a th:href="@{/login}">asdfafd</a>
-<span>Witaj</span>
+<div><a th:href="@{/register}"><button th:text="#{link.register}"></button></a></div>
+<div><a th:href="@{/login}"><button th:text="#{link.login}"></button></a></div>
 
 </body>
 </html>
