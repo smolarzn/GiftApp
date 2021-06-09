@@ -3,6 +3,9 @@ package com.natalia.mappers;
 import com.natalia.domain.UserEntity;
 import com.natalia.types.UserTo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserMapper {
 
     private UserMapper() {
@@ -29,6 +32,13 @@ public class UserMapper {
                 .withEmail(userEntity.getEmail())
                 .withId(userEntity.getId())
                 .withName(userEntity.getUserName())
-                .withPassword(userEntity.getPassword()).build();
+                .withPassword(userEntity.getPassword())
+                .withRoles(getUserRoleNames(userEntity)).build();
+    }
+
+    private static Set<String> getUserRoleNames(UserEntity entity) {
+        Set<String> roles = new HashSet<>();
+        entity.getRoles().forEach(roleEntity -> roles.add(roleEntity.getName()));
+        return roles;
     }
 }
