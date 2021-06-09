@@ -4,6 +4,7 @@ import com.natalia.domain.validator.Password;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 public class UserTo {
 
@@ -14,6 +15,7 @@ public class UserTo {
     private String password;
     @Email(regexp = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.([a-zA-Z]{2,}){1}")
     private String email;
+    private Set<String> roles;
 
     public Long getId() {
         return id;
@@ -47,6 +49,14 @@ public class UserTo {
         this.email = email;
     }
 
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+
     public static UserBuilder userBuilder() {
         return new UserBuilder();
     }
@@ -57,6 +67,7 @@ public class UserTo {
         private String name;
         private String password;
         private String email;
+        private Set<String> roles;
 
         public UserBuilder withId(Long id) {
             this.id = id;
@@ -78,12 +89,18 @@ public class UserTo {
             return this;
         }
 
+        public UserBuilder withRoles(Set<String> roles) {
+            this.roles = roles;
+            return this;
+        }
+
         public UserTo build() {
             UserTo userTo = new UserTo();
             userTo.setEmail(email);
             userTo.setPassword(password);
             userTo.setName(name);
             userTo.setId(id);
+            userTo.setRoles(roles);
             return userTo;
         }
     }
