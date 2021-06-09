@@ -1,6 +1,5 @@
 package com.natalia.controllers;
 
-import com.natalia.domain.UserEntity;
 import com.natalia.services.UserService;
 import com.natalia.types.UserTo;
 import org.slf4j.Logger;
@@ -46,5 +45,10 @@ public class UserController {
         userService.save(user);
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/user/mainPage")
+    public String mainPage() {
+        return "user/mainPage";
     }
 }
