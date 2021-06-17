@@ -29,3 +29,9 @@ body{
     width:25%;
     float: right;
 }
+
+.center_box{
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--font-bright-color);
+}
