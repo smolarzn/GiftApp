@@ -1,0 +1,31 @@
+:root {
+    --background-color: #2a2a2e;
+    --header-footer-color: #87AAB9;
+    --font-bright-color: #F5E0ED;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+}
+
+.header {
+    background: var(--header-footer-color);
+    overflow: hidden;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.footer{
+    background: var(--header-footer-color);
+    margin-top: auto;
+    text-align: center;
+}
+
+.header_right {
+    text-align: center;
+    width:25%;
+    float: right;
+}
