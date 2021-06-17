@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://thymeleaf.org">
+<body>
+<header th:fragment="header">
+    <div class="header_right">
+        <h2><span th:text="#{text.welcome.name}"></span> <span sec:authentication="name"></span></h2>
+        <form method="post" th:action="@{/logout}">
+            <button type="submit"><span th:text="#{text.logout}"></span></button>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </div>
+</header>
+</body>
+</html>
